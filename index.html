@@ -1,53 +1,79 @@
-sectio.nav
-  h1 FRONTEND TRENDS
-  h3.span.loader
-    span.m B
-    span.m E
-    span.m N
-    span.m E
-    span.m F
-    span.m I
-    span.m T
-    span.m S
-    span.m &nbsp;
-    span.m o
-    span.m f
-    span.m &nbsp;
-    span.m T
-    span.m E
-    span.m C
-    span.m H
-    span.m N
-    span.m O
-    span.m L
-    span.m O
-    span.m G
-    span.m I
-    span.m E
-    span.m S
-  .nav-container
-    a.nav-tab(href="#tab-svelte") PWAs
-    a.nav-tab(href="#tab-esbuild") Jamstack
-    a.nav-tab(href="#tab-next") AI Tools
-    a.nav-tab(href="#tab-typescript") TS Adoption
-    a.nav-tab(href="#tab-vite") IoT
-    span.nav-tab-slider
-main.main
-  section#tab-svelte.slider
-    h1 PWA
-    h2 run on multiple platforms and devices from a single codebase
-  section#tab-esbuild.slider
-    h1 Jamstack
-    h2 a modern web development architecture based on JavaScript, APIs, and Markup (JAM)
-  section#tab-next.slider
-    h1 AI TOOLS
-    h2 Transforming Web Development in 2024
-  section#tab-typescript.slider
-    h1 TYPE SCRIPT
-    h2 popularity has gone up a level
-  section#tab-vite.slider
-    h1 IoT
-    h2 weaving IoT into web development will lead to more connected and intelligent web applications
-canvas.background
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Trends</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <!-- Phần Header -->
+  <section class="nav">
+    <h1>FRONTEND TRENDS</h1>
+    <h3 class="span loader">
+      <span class="m">B</span>
+      <span class="m">E</span>
+      <span class="m">N</span>
+      <span class="m">E</span>
+      <span class="m">F</span>
+      <span class="m">I</span>
+      <span class="m">T</span>
+      <span class="m">S</span>
+      <span class="m">&nbsp;</span>
+      <span class="m">o</span>
+      <span class="m">f</span>
+      <span class="m">&nbsp;</span>
+      <span class="m">T</span>
+      <span class="m">E</span>
+      <span class="m">C</span>
+      <span class="m">H</span>
+      <span class="m">N</span>
+      <span class="m">O</span>
+      <span class="m">L</span>
+      <span class="m">O</span>
+      <span class="m">G</span>
+      <span class="m">I</span>
+      <span class="m">E</span>
+      <span class="m">S</span>
+    </h3>
+    <div class="nav-container">
+      <a class="nav-tab" href="#tab-svelte">PWAs</a>
+      <a class="nav-tab" href="#tab-esbuild">Jamstack</a>
+      <a class="nav-tab" href="#tab-next">AI Tools</a>
+      <a class="nav-tab" href="#tab-typescript">TS Adoption</a>
+      <a class="nav-tab" href="#tab-vite">IoT</a>
+      <span class="nav-tab-slider"></span>
+    </div>
+  </section>
 
-<!-- SGVsbG8hIE15IG5hbWUgaXMgU2FyYSBNYXphbC4gV2VsY29tZSB0byBteSBDb2RlUGVuIQ== -->
+  <!-- Nội dung chính -->
+  <main class="main">
+    <section id="tab-svelte" class="slider">
+      <h1>PWA</h1>
+      <h2>Run on multiple platforms and devices from a single codebase</h2>
+    </section>
+    <section id="tab-esbuild" class="slider">
+      <h1>Jamstack</h1>
+      <h2>A modern web development architecture based on JavaScript, APIs, and Markup (JAM)</h2>
+    </section>
+    <section id="tab-next" class="slider">
+      <h1>AI TOOLS</h1>
+      <h2>Transforming Web Development in 2024</h2>
+    </section>
+    <section id="tab-typescript" class="slider">
+      <h1>TYPE SCRIPT</h1>
+      <h2>Popularity has gone up a level</h2>
+    </section>
+    <section id="tab-vite" class="slider">
+      <h1>IoT</h1>
+      <h2>Weaving IoT into web development will lead to more connected and intelligent web applications</h2>
+    </section>
+  </main>
+
+  <!-- Canvas Background -->
+  <canvas class="background"></canvas>
+</body>
+</html>

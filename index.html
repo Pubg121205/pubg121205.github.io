@@ -270,22 +270,24 @@
                     </ul>
                 </div>
              <iframe 
-               src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTvnZZ2wUAyse79aFBJIhVQdv_K9nTnT-NeJUsluPIDEkg_RcEHFgxOkw8lbAigRQQ58zKgSiex6cJY/pubhtml" 
-               width="100%" 
-               height="600" 
-               frameborder="0" 
-               scrolling="no">
+                id="google-sheet" 
+                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTvnZZ2wUAyse79aFBJIhVQdv_K9nTnT-NeJUsluPIDEkg_RcEHFgxOkw8lbAigRQQ58zKgSiex6cJY/pubhtml" 
+                width="100%" 
+                height="600" 
+                frameborder="0" 
+                scrolling="no">
              </iframe>
 
             </div>
            </div>
         </div>
     <script>
-        // Tự động làm mới iframe mỗi 5 giây
+        const refreshInterval = 5000; // Thời gian làm mới (ms), hiện tại là 5 giây
+
         setInterval(() => {
             const iframe = document.getElementById('google-sheet');
-            iframe.src = iframe.src;
-        }, 5000); // 5 giây = 5000 ms
+            iframe.src = iframe.src; // Làm mới iframe
+        }, refreshInterval);
     </script>
     </body>
     </html>

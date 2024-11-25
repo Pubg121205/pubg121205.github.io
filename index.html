@@ -280,7 +280,13 @@
             </div>
            </div>
         </div>
-        
+    <script>
+        // Tự động làm mới iframe mỗi 5 giây
+        setInterval(() => {
+            const iframe = document.getElementById('google-sheet');
+            iframe.src = iframe.src;
+        }, 5000); // 5 giây = 5000 ms
+    </script>
     </body>
     </html>
 

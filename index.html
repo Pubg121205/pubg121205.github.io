@@ -282,12 +282,18 @@
            </div>
         </div>
     <script>
-        const refreshInterval = 10000; // Thời gian làm mới (ms), hiện tại là 5 giây
+fetch('https://spreadsheets.google.com/feeds/list/1OZrEd3bKDh1wUZT0_SRDxoqMaFWVsC40JEOu_3LeXOw/1/public/values?alt=json')
+  .then(response => response.json())
+  .then(data => {
+    const rows = data.feed.entry;
+    rows.forEach(row => {
+      console.log(`Name: ${row.gsx$name.$t}`);
+      console.log(`Email: ${row.gsx$email.$t}`);
+      console.log(`Age: ${row.gsx$age.$t}`);
+    });
+  })
+  .catch(error => console.error('Error fetching data:', error));
 
-        setInterval(() => {
-            const iframe = document.getElementById('google-sheet');
-            iframe.src = iframe.src; // Làm mới iframe
-        }, refreshInterval);
     </script>
     </body>
     </html>

@@ -134,20 +134,24 @@
         border-radius: 50%;
         left: -37px;
     }
-         .con {
-              display: flex; /* Sử dụng Flexbox */
-              justify-content: center; /* Căn giữa ngang */
-              align-items: center; /* Căn giữa dọc */
-              flex-direction: column; /* Đặt các phần tử theo chiều dọc */
-              gap: 20px; /* Khoảng cách giữa các phần tử */
-         }
-iframe {
-    width: 90%;
-    height: 500px;
-    border: 1px solid #ccc;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+         .iframe-container {
+              display: flex; /* Kích hoạt Flexbox */
+              justify-content: center; /* Căn giữa theo chiều ngang */
+              align-items: center; /* Căn giữa theo chiều dọc */
+              margin-top: 20px; /* Tùy chỉnh khoảng cách phía trên */
+              margin-bottom: 20px; /* Khoảng cách phía dưới */
+              width: 100%; /* Đảm bảo container chiếm toàn bộ chiều ngang */
+              height: auto; /* Điều chỉnh chiều cao theo nội dung iframe */
 }
+
+          iframe {
+              width: 90%; /* Chiều rộng của iframe so với container */
+              height: 500px; /* Chiều cao của iframe */
+              border: 1px solid #ccc; /* Viền nhẹ cho iframe */
+              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Đổ bóng */
+              border-radius: 8px; /* Bo góc */
+}
+
 
 
 
@@ -290,9 +294,12 @@ iframe {
            </div>
          <div class="google-sheet">
     <div class="con">
+    <div class="iframe-container">
     <iframe 
         src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTvnZZ2wUAyse79aFBJIhVQdv_K9nTnT-NeJUsluPIDEkg_RcEHFgxOkw8lbAigRQQ58zKgSiex6cJY/pubhtml?widget=true&amp;headers=false">
     </iframe>
+    </div>
+
 </div>
 </div>
 

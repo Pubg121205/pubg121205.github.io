@@ -134,6 +134,21 @@
         border-radius: 50%;
         left: -37px;
     }
+         .con {
+              display: flex; /* Sử dụng Flexbox */
+              justify-content: center; /* Căn giữa ngang */
+              align-items: center; /* Căn giữa dọc */
+              flex-direction: column; /* Đặt các phần tử theo chiều dọc */
+              gap: 20px; /* Khoảng cách giữa các phần tử */
+         }
+iframe {
+    width: 90%;
+    height: 500px;
+    border: 1px solid #ccc;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
 
 
         </style>
@@ -274,10 +289,11 @@
             </div>
            </div>
          <div class="google-sheet">
+    <div class="con">
     <iframe 
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTvnZZ2wUAyse79aFBJIhVQdv_K9nTnT-NeJUsluPIDEkg_RcEHFgxOkw8lbAigRQQ58zKgSiex6cJY/pubhtml?widget=true&amp;headers=false"
-        style="display: block; margin: 20px auto; width: 90%; height: 500px; border: 1px solid #ccc; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTvnZZ2wUAyse79aFBJIhVQdv_K9nTnT-NeJUsluPIDEkg_RcEHFgxOkw8lbAigRQQ58zKgSiex6cJY/pubhtml?widget=true&amp;headers=false">
     </iframe>
+</div>
 </div>
 
         </div>

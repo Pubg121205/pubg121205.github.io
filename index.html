@@ -179,6 +179,22 @@
          time{
           text-align: center;
          }
+         table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left; /* Căn chữ sang trái */
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
         </style>
     </head>
     <body>
@@ -260,16 +276,58 @@
            <div class="project">
             <h2>PROJECTS</h2>
             <div class="item">
-                <h4>Website shopping</h4>
-                <div class="time">
-                    2020
-                </div>
-                <div class="web">
-                    www.lundevweb.com
-                </div>
-                <div class="location">
-                    Frond-end Developer
-                </div>
+                <table>
+        <tr>
+            <th>Tiêu chí</th>
+            <th>Thủ công</th>
+            <th>RFID + IoT</th>
+        </tr>
+        <tr>
+            <td>Độ chính xác</td>
+            <td>Dễ sai sót, gian lận</td>
+            <td>Cao, khó giả mạo</td>
+        </tr>
+        <tr>
+            <td>Thời gian</td>
+            <td>Chậm, mất nhiều thời gian</td>
+            <td>Nhanh, tự động quét</td>
+        </tr>
+        <tr>
+            <td>Tự động hóa</td>
+            <td>Không có</td>
+            <td>Hoàn toàn tự động</td>
+        </tr>
+        <tr>
+            <td>Lưu trữ dữ liệu</td>
+            <td>Thủ công, dễ thất lạc</td>
+            <td>Lưu trữ số, dễ truy cập</td>
+        </tr>
+        <tr>
+            <td>Bảo mật</td>
+            <td>Thấp, dễ chỉnh sửa danh sách</td>
+            <td>Cao, mã hóa bảo vệ dữ liệu</td>
+        </tr>
+        <tr>
+            <td>Khả năng tích hợp</td>
+            <td>Hạn chế, khó tích hợp hệ thống lớn</td>
+            <td>Linh hoạt, kết nối dễ dàng</td>
+        </tr>
+        <tr>
+            <td>Thống kê và phân tích</td>
+            <td>Thủ công, mất thời gian</td>
+            <td>Tự động, dễ phân tích dữ liệu</td>
+        </tr>
+        <tr>
+            <td>Ứng dụng mở rộng</td>
+            <td>Giới hạn quy mô nhỏ</td>
+            <td>Mở rộng nhiều lĩnh vực: Chấm công, kiểm soát,...</td>
+        </tr>
+        <tr>
+            <th>KẾT LUẬN</th>
+            <td>Đơn giản, rẻ, phù hợp lớp học nhỏ ít học sinh.</td>
+            <td>Hiện đại, hiệu quả, tiết kiệm thời gian, chi phí ban đầu sẽ cao.</td>
+        </tr>
+    </table>
                 <div class="des">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto consequatur amet sed, est eum facilis repellendus 
                     atque perspiciatis iste porro nobis autem explicabo expedita fugiat nostrum. Eveniet eum autem culpa!

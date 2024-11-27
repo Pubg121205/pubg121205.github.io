@@ -136,23 +136,22 @@
         border-radius: 50%;
         left: -37px;
     }
-   .iframe-container {
+         .iframe-container {
               display: flex; /* Kích hoạt Flexbox */
               justify-content: center; /* Căn giữa theo chiều ngang */
               align-items: center; /* Căn giữa theo chiều dọc */
               margin-top: 20px; /* Tùy chỉnh khoảng cách phía trên */
               margin-bottom: 20px; /* Khoảng cách phía dưới */
-              width: 200%; /* Đảm bảo container chiếm toàn bộ chiều ngang */
-              height: auto; /* Điều chỉnh chiều cao theo nội dung iframe */
+              width: 600px; /* Đảm bảo container chiếm toàn bộ chiều ngang */
+              height: 190px; /* Điều chỉnh chiều cao theo nội dung iframe */
 }
 
           iframe {
-              width: 90%; /* Chiều rộng của iframe so với container */
-              height: 500px; /* Chiều cao của iframe */
-              border: 1px solid #ccc; /* Viền nhẹ cho iframe */
-              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Đổ bóng */
-              border-radius: 8px; /* Bo góc */
-}
+            width: 120%; /* Chiều rộng iframe */
+            height: 200%; /* Chiều cao iframe */
+            border: 1px solid #ccc; /* Viền nhẹ cho iframe */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
+            border-radius: 8px; /* Bo góc iframe */
 }
     p.left {
        text-align: left;
@@ -347,16 +346,8 @@
             <li><strong>Thuật toán hỗ trợ:</strong> Tự động sắp xếp số buổi đi học hoặc vắng học theo ngày.</li>
             <li><strong>Gửi thông báo qua SIM:</strong> Tích hợp module SIM để gửi tin nhắn thông báo tình trạng có mặt/không có mặt của học sinh tới phụ huynh ngay sau khi học sinh quẹt thẻ.</li>
         </ul>
-    </div>
-                </div>
-            </div>
-    
-
-               
-
-            </div>
-           </div>
-         <div class="google-sheet">
+    </div><br><br><br>
+    <div class="google-sheet">
     <div class="con">
     <div class="iframe-container">
     <iframe 
@@ -366,6 +357,15 @@
 
 </div>
 </div>
+                </div>
+            </div>
+    
+
+               
+
+            </div>
+           </div>
+        
 
         </div>
       
@@ -385,4 +385,3 @@ fetch('https://spreadsheets.google.com/feeds/list/1OZrEd3bKDh1wUZT0_SRDxoqMaFWVs
     </script>
     </body>
     </html>
-

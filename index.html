@@ -2,109 +2,53 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Điều khiển bằng giọng nói</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      background: #f0f0f0;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 18px;
-      background: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #45a049;
-    }
-    #voice-output {
-      margin-top: 20px;
-      font-size: 20px;
-      white-space: pre-wrap;
-    }
-    table {
-      margin: 30px auto;
-      border-collapse: collapse;
-      width: 60%;
-    }
-    table, th, td {
-      border: 1px solid #ccc;
-    }
-    th, td {
-      padding: 12px;
-    }
-    th {
-      background-color: #e0e0e0;
-    }
-  </style>
+  <title>Điều khiển giọng nói</title>
 </head>
 <body>
-  <h1>🎤 Điều khiển lớp học thông minh</h1>
-  <button id="startBtn">🎙 Bắt đầu nói</button>
-  <p id="voice-output">👉 Chưa nhận lệnh</p>
-
-  <table>
-    <tr>
-      <th>🗣 Bạn nói</th>
-      <th>📤 Gửi đến ESP32</th>
-    </tr>
-    <tr><td>bật đèn 1</td><td>bat den 1</td></tr>
-    <tr><td>tắt đèn 2</td><td>tat den 2</td></tr>
-    <tr><td>mở rèm</td><td>mo rem</td></tr>
-    <tr><td>đóng rèm</td><td>dong rem</td></tr>
-    <tr><td>mở máy chiếu</td><td>mo may chieu</td></tr>
-    <tr><td>đóng máy chiếu</td><td>dong may chieu</td></tr>
-    <tr><td>mở quạt</td><td>bat quat</td></tr>
-    <tr><td>tắt quạt</td><td>tat quat</td></tr>
-  </table>
+  <h2>🎙️ Điều khiển thiết bị bằng giọng nói</h2>
+  <button onclick="startRecognition()">🎤 Bắt đầu nói</button>
+  <p id="status">Chưa nói</p>
 
   <script>
-    const ESP32_IP = "192.168.0.103"; // 🔁 Thay IP ESP32 của bạn
-    const startBtn = document.getElementById("startBtn");
-    const output = document.getElementById("voice-output");
+    const ESP32_IP = "192.168.1.105"; // 👉 thay bằng IP ESP32 của bạn
 
-    function toNonAccentVietnamese(str) {
-      str = str.toLowerCase();
-      str = str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      str = str.replace(/đ/g, "d");
-      return str;
-    }
+    const commands = {
+      "bật đèn 1": "bat den 1",
+      "tắt đèn 1": "tat den 1",
+      "bật đèn 2": "bat den 2",
+      "tắt đèn 2": "tat den 2",
+      "bật quạt": "bat quat",
+      "tắt quạt": "tat quat",
+      "mở máy chiếu": "mo may chieu",
+      "đóng máy chiếu": "dong may chieu",
+      "mở rèm": "mo rem",
+      "đóng rèm": "dong rem"
+    };
 
-    if ('webkitSpeechRecognition' in window) {
-      const recognition = new webkitSpeechRecognition();
-      recognition.lang = 'vi-VN';
-      recognition.interimResults = false;
+    function startRecognition() {
+      const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
+      recognition.lang = "vi-VN";
+      recognition.start();
 
-      startBtn.onclick = () => {
-        output.innerText = "🎧 Đang nghe...";
-        recognition.start();
+      recognition.onresult = function(event) {
+        const transcript = event.results[0][0].transcript.toLowerCase();
+        document.getElementById("status").textContent = `📢 Bạn nói: ${transcript}`;
+
+        if (commands[transcript]) {
+          const cmd = commands[transcript];
+          const url = `http://${ESP32_IP}/voice?cmd=${encodeURIComponent(cmd)}`;
+          fetch(url)
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById("status").textContent += `\n➡️ Lệnh gửi: ${cmd}`;
+            })
+            .catch(error => {
+              document.getElementById("status").textContent += `\n❌ Lỗi gửi lệnh: ${error}`;
+            });
+        } else {
+          document.getElementById("status").textContent += `\n⚠️ Không hiểu lệnh này`;
+        }
       };
-
-      recognition.onresult = (event) => {
-        const spoken = event.results[0][0].transcript;
-        const command = toNonAccentVietnamese(spoken);
-        output.innerText = `📢 Bạn nói: ${spoken}\n➡️ Lệnh gửi: ${command}`;
-
-        fetch(`http://${ESP32_IP}/voice?cmd=${encodeURIComponent(command)}`)
-          .then(res => res.text())
-          .then(data => {
-            output.innerText += `\n✅ ESP phản hồi: ${data}`;
-          })
-          .catch(err => {
-            output.innerText += `\n❌ Lỗi gửi lệnh: ${err}`;
-          });
-      };
-
-      recognition.onerror = (event) => {
-        output.innerText = "⚠️ Lỗi nhận giọng nói: " + event.error;
-      };
-    } else {
-      output.innerText = "❌ Trình duyệt không hỗ trợ nhận diện giọng nói.";
     }
   </script>
 </body>

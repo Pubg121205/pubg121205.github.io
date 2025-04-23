@@ -1,55 +1,52 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <title>Điều khiển giọng nói</title>
-</head>
-<body>
-  <h2>🎙️ Điều khiển thiết bị bằng giọng nói</h2>
-  <button onclick="startRecognition()">🎤 Bắt đầu nói</button>
-  <p id="status">Chưa nói</p>
+#include <WiFi.h>
+#include <WebServer.h>
 
-  <script>
-    const ESP32_IP = "192.168.0.103"; // 👉 thay bằng IP ESP32 của bạn
+const char* ssid = "FC PKT";
+const char* password = "@Binquynh76";
 
-    const commands = {
-      "bật đèn 1": "bat den 1",
-      "tắt đèn 1": "tat den 1",
-      "bật đèn 2": "bat den 2",
-      "tắt đèn 2": "tat den 2",
-      "bật quạt": "bat quat",
-      "tắt quạt": "tat quat",
-      "mở máy chiếu": "mo may chieu",
-      "đóng máy chiếu": "dong may chieu",
-      "mở rèm": "mo rem",
-      "đóng rèm": "dong rem"
-    };
+WebServer server(80);
 
-    function startRecognition() {
-      const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-      recognition.lang = "vi-VN";
-      recognition.start();
+void setup() {
+  Serial.begin(115200);
+  
+  // Kết nối Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\n✅ Đã kết nối WiFi!");
+  Serial.print("📡 ESP IP: ");
+  Serial.println(WiFi.localIP());
 
-      recognition.onresult = function(event) {
-        const transcript = event.results[0][0].transcript.toLowerCase();
-        document.getElementById("status").textContent = `📢 Bạn nói: ${transcript}`;
+  // Thiết lập Web Server
+  server.on("/", HTTP_GET, [](){
+    String html = "<html><body><h1>Điều khiển thiết bị bằng Giọng Nói</h1><button onclick='startRecognition()'>Bắt đầu nhận diện giọng nói</button><p id='output'></p><script>";
+    html += "function startRecognition() { const recognition = new(window.SpeechRecognition || window.webkitSpeechRecognition)();";
+    html += "recognition.lang = 'vi-VN'; recognition.start();";
+    html += "recognition.onresult = function(event) { document.getElementById('output').innerText = event.results[0][0].transcript;";
+    html += "fetch('/voice?cmd=' + event.results[0][0].transcript).then(response => response.text()).then(data => console.log(data)); };";
+    html += "}</script></body></html>";
+    server.send(200, "text/html", html);
+  });
 
-        if (commands[transcript]) {
-          const cmd = commands[transcript];
-          const url = `http://${ESP32_IP}/voice?cmd=${encodeURIComponent(cmd)}`;
-          fetch(url)
-            .then(response => response.text())
-            .then(data => {
-              document.getElementById("status").textContent += `\n➡️ Lệnh gửi: ${cmd}`;
-            })
-            .catch(error => {
-              document.getElementById("status").textContent += `\n❌ Lỗi gửi lệnh: ${error}`;
-            });
-        } else {
-          document.getElementById("status").textContent += `\n⚠️ Không hiểu lệnh này`;
-        }
-      };
-    }
-  </script>
-</body>
-</html>
+  // Xử lý lệnh giọng nói
+  server.on("/voice", HTTP_GET, handleVoiceCommand);
+  
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();
+}
+
+void handleVoiceCommand() {
+  if (server.hasArg("cmd")) {
+    String cmd = server.arg("cmd");
+    // Xử lý lệnh giọng nói như trong mã trước
+    Serial.println("Lệnh nhận được: " + cmd);
+    server.send(200, "text/plain", "Lệnh giọng nói đã nhận: " + cmd);
+  } else {
+    server.send(400, "text/plain", "Thiếu tham số cmd");
+  }
+}

@@ -1,43 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Điều khiển bằng Giọng Nói</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control ESP32</title>
 </head>
 <body>
-  <h2>🎙 Điều khiển thiết bị bằng Giọng Nói</h2>
-  <button onclick="startRecognition()">Bắt đầu nhận lệnh</button>
-  <p id="status">⏳ Đang chờ lệnh...</p>
-
-  <script>
-    const espIp = "http://192.168.0.103"; // Thay bằng IP ESP32 của bạn
-
-    function startRecognition() {
-      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-      recognition.lang = 'vi-VN';
-      recognition.start();
-
-      recognition.onresult = function(event) {
-        const voiceCommand = event.results[0][0].transcript;
-        document.getElementById("status").innerText = "Bạn đã nói: " + voiceCommand;
-        sendCommand(voiceCommand);
-      };
-
-      recognition.onerror = function(event) {
-        document.getElementById("status").innerText = "❌ Lỗi nhận diện: " + event.error;
-      };
-    }
-
-    function sendCommand(cmd) {
-      const url = `${espIp}/lenh?cmd=${encodeURIComponent(cmd)}`;
-      fetch(url)
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById("status").innerText += "\n✅ ESP trả lời: " + data;
-        })
-        .catch(error => {
-          document.getElementById("status").innerText += "\n⚠️ Gửi thất bại: " + error;
-        });
-    }
-  </script>
+    <h1>Control Devices</h1>
+    <button onclick="sendCommand('bat den 1')">Bật đèn 1</button>
+    <button onclick="sendCommand('tat den 1')">Tắt đèn 1</button>
+    <button onclick="sendCommand('bat den 2')">Bật đèn 2</button>
+    <button onclick="sendCommand('tat den 2')">Tắt đèn 2</button>
+    
+    <script>
+        // Hàm gửi lệnh đến ESP32
+        function sendCommand(command) {
+            const espIP = "http://[ESP_IP]"; // Thay [ESP_IP] bằng địa chỉ IP thực của ESP32
+            const url = `${espIP}/lenh?cmd=${command}`;
+            
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    console.log("Lệnh đã gửi: " + command);
+                    console.log(data); // Xử lý phản hồi từ server
+                })
+                .catch(error => {
+                    console.error("Lỗi khi gửi yêu cầu: ", error);
+                });
+        }
+    </script>
 </body>
 </html>

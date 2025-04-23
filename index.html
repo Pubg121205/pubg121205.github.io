@@ -13,6 +13,10 @@
     body{
         background-color: #D5D5D5;
         font-family: system-ui;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding: 40px;
+        background: #f0f0f0;
     }
     .container{
         background-color: #E9E7EA;
@@ -135,6 +139,23 @@
         content: '';
         border-radius: 50%;
         left: -37px;
+    }
+     button {
+        padding: 10px 20px;
+        font-size: 18px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    #voice-output {
+      margin-top: 20px;
+      font-size: 22px;
+      color: #333;
     }
          .iframe-container {
               display: flex; /* Kích hoạt Flexbox */
@@ -476,7 +497,45 @@ fetch('https://spreadsheets.google.com/feeds/list/1OZrEd3bKDh1wUZT0_SRDxoqMaFWVs
     });
   })
   .catch(error => console.error('Error fetching data:', error));
+    const startBtn = document.getElementById("startBtn");
+    const output = document.getElementById("voice-output");
 
+    // Thay địa chỉ IP ESP32 ở đây
+    const ESP32_IP = "192.168.1.100";
+
+    if ('webkitSpeechRecognition' in window) {
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'vi-VN';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      startBtn.onclick = () => {
+        output.innerText = "🎙 Đang nghe...";
+        recognition.start();
+      };
+
+      recognition.onresult = (event) => {
+        const command = event.results[0][0].transcript;
+        output.innerText = "📢 Đã nghe: " + command;
+
+        // Gửi lệnh tới ESP32
+        const url = `http://${ESP32_IP}/voice?cmd=${encodeURIComponent(command)}`;
+        fetch(url)
+          .then(res => res.text())
+          .then(data => {
+            output.innerText += "\n✅ Gửi lệnh thành công: " + data;
+          })
+          .catch(err => {
+            output.innerText += "\n❌ Gửi lệnh thất bại: " + err;
+          });
+      };
+
+      recognition.onerror = (event) => {
+        output.innerText = "⚠️ Lỗi nhận diện: " + event.error;
+      };
+    } else {
+      output.innerText = "❌ Trình duyệt không hỗ trợ nhận diện giọng nói.";
+    }
     </script>
     </body>
     </html>

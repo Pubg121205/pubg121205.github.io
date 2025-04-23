@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control ESP32</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
     <h1>Control Devices</h1>
@@ -15,17 +28,20 @@
     <script>
         // Hàm gửi lệnh đến ESP32
         function sendCommand(command) {
-            const espIP = "http://192.168.0.103"; // Thay [ESP_IP] bằng địa chỉ IP thực của ESP32
+            const espIP = "http://192.168.0.103/"; // Thay [ESP_IP] bằng địa chỉ IP thực của ESP32
             const url = `${espIP}/lenh?cmd=${command}`;
-            
+
+            // Gửi yêu cầu HTTP tới ESP32
             fetch(url)
                 .then(response => response.text())
                 .then(data => {
                     console.log("Lệnh đã gửi: " + command);
-                    console.log(data); // Xử lý phản hồi từ server
+                    console.log(data); // Hiển thị phản hồi từ server
+                    alert(data); // Hiển thị thông báo trên trang web khi nhận phản hồi
                 })
                 .catch(error => {
                     console.error("Lỗi khi gửi yêu cầu: ", error);
+                    alert("Lỗi khi gửi lệnh!");
                 });
         }
     </script>

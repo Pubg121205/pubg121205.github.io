@@ -15,7 +15,7 @@
     <script>
         // Hàm gửi lệnh đến ESP32
         function sendCommand(command) {
-            const espIP = "http://[ESP_IP]"; // Thay [ESP_IP] bằng địa chỉ IP thực của ESP32
+            const espIP = "http://192.168.0.103"; // Thay [ESP_IP] bằng địa chỉ IP thực của ESP32
             const url = `${espIP}/lenh?cmd=${command}`;
             
             fetch(url)

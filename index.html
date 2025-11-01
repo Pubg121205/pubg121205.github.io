@@ -523,60 +523,42 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS3jWiZFE8StNxpG0AMdiubdU
 
 </footer>
 
-<!-- Floating buttons -->
-<div class="floating-buttons">
-  <!-- Nút Facebook -->
-  <a href="https://www.facebook.com/Le.tu.anh2403" target="_blank" class="floating-btn facebook">
-    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook">
-  </a>
-
-  <!-- Nút Zalo -->
-  <a href="https://zalo.me/0946410986" target="_blank" class="floating-btn zalo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
-  </a>
-</div>
+<!-- Floating Facebook Button -->
+<a href="https://www.facebook.com/Le.tu.anh2403" target="_blank" class="floating-fb">
+  <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook">
+</a>
 
 <style>
-  /* Container nút nổi */
-  .floating-buttons {
+  /* Nút nổi Facebook */
+  .floating-fb {
     position: fixed;
-    bottom: 80px;   /* cách đáy */
-    right: 20px;    /* cách mép phải */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 9999;
-  }
-
-  /* Mỗi nút */
-  .floating-btn {
+    bottom: 80px;     /* cách đáy */
+    right: 20px;      /* cách mép phải */
     width: 55px;
     height: 55px;
     border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+    background-color: #1877f2;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
+    z-index: 9999;
   }
 
-  .floating-btn img {
+  .floating-fb img {
     width: 30px;
     height: 30px;
-    border-radius: 50%;
   }
 
-  .floating-btn:hover {
+  .floating-fb:hover {
     transform: scale(1.1);
     box-shadow: 0 5px 12px rgba(0,0,0,0.35);
   }
-
-  /* Màu nền riêng */
-  .facebook { background-color: #1877f2; }
-  .zalo { background-color: #0180c7; }
 </style>
+
+ 
+
 
 
 

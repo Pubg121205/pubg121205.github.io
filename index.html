@@ -532,7 +532,7 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS3jWiZFE8StNxpG0AMdiubdU
 
   <!-- Nút Zalo -->
   <a href="https://zalo.me/0946410986" target="_blank" class="floating-btn zalo">
-    <img src="https://cdn-icons-png.flaticon.com/512/2504/2504942.png" alt="Zalo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
   </a>
 </div>
 
@@ -540,8 +540,8 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS3jWiZFE8StNxpG0AMdiubdU
   /* Container nút nổi */
   .floating-buttons {
     position: fixed;
-    bottom: 80px;   /* khoảng cách từ đáy */
-    right: 20px;    /* khoảng cách từ mép phải */
+    bottom: 80px;   /* cách đáy */
+    right: 20px;    /* cách mép phải */
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -565,6 +565,7 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS3jWiZFE8StNxpG0AMdiubdU
   .floating-btn img {
     width: 30px;
     height: 30px;
+    border-radius: 50%;
   }
 
   .floating-btn:hover {
@@ -572,10 +573,12 @@ fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS3jWiZFE8StNxpG0AMdiubdU
     box-shadow: 0 5px 12px rgba(0,0,0,0.35);
   }
 
-  /* Màu nền riêng cho từng nút */
+  /* Màu nền riêng */
   .facebook { background-color: #1877f2; }
   .zalo { background-color: #0180c7; }
 </style>
+
+
 
 
 

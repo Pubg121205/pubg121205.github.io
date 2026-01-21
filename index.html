@@ -8,90 +8,105 @@
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #f7f7f7;
 }
 
 h1 {
-  margin-top: 20px;
+  font-size: 40px;
 }
 
 input {
   width: 60px;
-  font-size: 18px;
+  font-size: 20px;
   text-align: center;
 }
 
 button {
-  font-size: 18px;
-  padding: 5px 15px;
-  cursor: pointer;
+  font-size: 20px;
+  padding: 6px 20px;
 }
 
 #result {
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
-  margin: 15px 0;
+  margin: 20px;
 }
 
-.hand-box {
+/* vùng ảnh */
+.box {
   position: relative;
-  width: 400px;
-  margin: auto;
+  width: 420px;
+  margin: 30px auto;
 }
 
-.hand-box img {
+.box img {
   width: 100%;
 }
 
 /* chấm đếm */
 .dot {
   position: absolute;
-  width: 30px;
-  height: 30px;
+  width: 26px;
+  height: 26px;
   background: orange;
   border-radius: 50%;
   opacity: 0.85;
 }
 
-/* vị trí chấm (không theo ngón) */
-.dot1 { top: 40%; left: 30%; }
-.dot2 { top: 35%; left: 45%; }
-.dot3 { top: 40%; left: 60%; }
-.dot4 { top: 55%; left: 35%; }
-.dot5 { top: 55%; left: 50%; }
-.dot6 { top: 55%; left: 65%; }
-.dot7 { top: 70%; left: 40%; }
-.dot8 { top: 70%; left: 55%; }
-.dot9 { top: 25%; left: 38%; }
-.dot10{ top: 25%; left: 58%; }
+/* vị trí CHẤM TAY (10 điểm cố định – không theo ngón) */
+.hand .d1  {top:35%; left:25%}
+.hand .d2  {top:35%; left:38%}
+.hand .d3  {top:35%; left:51%}
+.hand .d4  {top:35%; left:64%}
+.hand .d5  {top:50%; left:30%}
+.hand .d6  {top:50%; left:45%}
+.hand .d7  {top:50%; left:60%}
+.hand .d8  {top:65%; left:35%}
+.hand .d9  {top:65%; left:50%}
+.hand .d10 {top:65%; left:65%}
 
+/* vị trí CHẤM CHÂN */
+.foot .d1  {top:30%; left:40%}
+.foot .d2  {top:30%; left:55%}
+.foot .d3  {top:45%; left:38%}
+.foot .d4  {top:45%; left:55%}
+.foot .d5  {top:60%; left:42%}
+.foot .d6  {top:60%; left:55%}
+.foot .d7  {top:75%; left:45%}
+.foot .d8  {top:75%; left:55%}
+.foot .d9  {top:85%; left:48%}
+.foot .d10 {top:85%; left:58%}
 </style>
 </head>
 
 <body>
 
-<h1>✋ Đếm Bằng Tay</h1>
+<h1>✋ Đếm Bằng Tay & Chân 🦶</h1>
 
-<input id="a" type="number" value="2">
+<input id="a" type="number" value="3">
 +
-<input id="b" type="number" value="3">
+<input id="b" type="number" value="5">
 <button onclick="start()">Bắt đầu</button>
 
 <div id="result"></div>
 
-<div class="hand-box">
+<!-- TAY -->
+<div class="box hand">
   <img src="hand.png">
+  <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+  <div class="dot d4"></div><div class="dot d5"></div><div class="dot d6"></div>
+  <div class="dot d7"></div><div class="dot d8"></div><div class="dot d9"></div>
+  <div class="dot d10"></div>
+</div>
 
-  <div class="dot dot1"></div>
-  <div class="dot dot2"></div>
-  <div class="dot dot3"></div>
-  <div class="dot dot4"></div>
-  <div class="dot dot5"></div>
-  <div class="dot dot6"></div>
-  <div class="dot dot7"></div>
-  <div class="dot dot8"></div>
-  <div class="dot dot9"></div>
-  <div class="dot dot10"></div>
+<hr width="500">
+
+<!-- CHÂN -->
+<div class="box foot">
+  <img src="foot.png">
+  <div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div>
+  <div class="dot d4"></div><div class="dot d5"></div><div class="dot d6"></div>
+  <div class="dot d7"></div><div class="dot d8"></div><div class="dot d9"></div>
+  <div class="dot d10"></div>
 </div>
 
 <script>
@@ -102,11 +117,19 @@ function start() {
 
   document.getElementById("result").innerText = "Đếm: " + total;
 
-  const dots = document.querySelectorAll(".dot");
-  dots.forEach(d => d.style.display = "none");
+  const handDots = document.querySelectorAll(".hand .dot");
+  const footDots = document.querySelectorAll(".foot .dot");
 
-  for (let i = 0; i < total && i < dots.length; i++) {
-    dots[i].style.display = "block";
+  handDots.forEach(d => d.style.display = "none");
+  footDots.forEach(d => d.style.display = "none");
+
+  if (total <= 10) {
+    for (let i = 0; i < total; i++) handDots[i].style.display = "block";
+  } else {
+    handDots.forEach(d => d.style.display = "block");
+    let remain = total - 10;
+    for (let i = 0; i < remain && i < footDots.length; i++)
+      footDots[i].style.display = "block";
   }
 }
 </script>

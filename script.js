@@ -1,76 +1,104 @@
-function createFingers(container, count, className) {
-  container.innerHTML = "";
-  for (let i = 0; i < count; i++) {
-    let div = document.createElement("div");
-    div.className = className;
-    container.appendChild(div);
+document.addEventListener("DOMContentLoaded", () => {
+  createHands();
+});
+
+function createHands() {
+  leftHand.innerHTML = "";
+  rightHand.innerHTML = "";
+  feet.innerHTML = "";
+
+  for (let i = 0; i < 5; i++) {
+    leftHand.appendChild(createFinger());
+    rightHand.appendChild(createFinger());
   }
 }
 
-createFingers(leftHand, 5, "finger");
-createFingers(rightHand, 5, "finger");
-
-function start() {
-  let a = parseInt(document.getElementById("a").value);
-  let b = parseInt(document.getElementById("b").value);
-
-  if (!a || !b) return alert("Nhập số!");
-
-  document.getElementById("feet").innerHTML = "";
-  countFingers(a, () => countSecond(b, () => countTotal(a + b)));
+function createFinger() {
+  let d = document.createElement("div");
+  d.className = "finger";
+  return d;
 }
 
-function countFingers(n, done) {
-  let fingers = document.querySelectorAll(".finger");
+function createToe() {
+  let d = document.createElement("div");
+  d.className = "toe";
+  return d;
+}
+
+function start() {
+  const a = Number(document.getElementById("a").value);
+  const b = Number(document.getElementById("b").value);
+
+  if (!a || !b) {
+    alert("Nhập đủ 2 số");
+    return;
+  }
+
+  resetAll();
+  countFirst(a, () => countSecond(b, () => countTotal(a + b)));
+}
+
+function resetAll() {
+  document.querySelectorAll(".finger,.toe").forEach(e => {
+    e.classList.remove("active");
+  });
+  feet.innerHTML = "";
+}
+
+function countFirst(n, done) {
+  stepText.innerText = "Đếm số thứ nhất";
+  const fingers = document.querySelectorAll(".finger");
   let i = 0;
 
-  stepText.innerText = "Đếm số thứ nhất";
-
-  let interval = setInterval(() => {
+  const timer = setInterval(() => {
     fingers[i].classList.add("active");
     countText.innerText = i + 1;
     i++;
     if (i === n) {
-      clearInterval(interval);
-      setTimeout(done, 800);
+      clearInterval(timer);
+      setTimeout(done, 700);
     }
   }, 600);
 }
 
 function countSecond(n, done) {
   stepText.innerText = "Đếm số thứ hai";
-  let fingers = document.querySelectorAll(".finger");
-  let used = document.querySelectorAll(".active").length;
-  let i = 0;
 
-  createFingers(feet, 10, "toe");
-  let toes = document.querySelectorAll(".toe");
+  const fingers = document.querySelectorAll(".finger");
+  let used = document.querySelectorAll(".finger.active").length;
 
-  let interval = setInterval(() => {
+  // tạo bàn chân
+  for (let i = 0; i < 10; i++) feet.appendChild(createToe());
+  const toes = document.querySelectorAll(".toe");
+
+  let count = 0;
+
+  const timer = setInterval(() => {
     if (used < 10) {
       fingers[used].classList.add("active");
       used++;
     } else {
-      toes[i].classList.add("active");
-      i++;
+      toes[count - (10 - used)].classList.add("active");
     }
-    countText.innerText = i + used;
-    if (i + used === n + used - (used - 10)) {
-      clearInterval(interval);
-      setTimeout(done, 800);
+    count++;
+    countText.innerText = count;
+
+    if (count === n) {
+      clearInterval(timer);
+      setTimeout(done, 700);
     }
   }, 600);
 }
 
 function countTotal(total) {
   stepText.innerText = "Đếm tổng";
-  let all = [...document.querySelectorAll(".finger"), ...document.querySelectorAll(".toe")];
+  const all = [...document.querySelectorAll(".finger"), ...document.querySelectorAll(".toe")];
   let i = 0;
 
-  let interval = setInterval(() => {
+  const timer = setInterval(() => {
     all[i].classList.add("active");
     countText.innerText = i + 1;
     i++;
-    if (i === total) clearInterval(interval);
+    if (i === total) clearInterval(timer);
   }, 400);
 }

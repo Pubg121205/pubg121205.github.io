@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>🖐️ Đếm Bằng Tay & Chân 🦶</title>
+<title>Đếm Bằng Tay & Chân</title>
 
 <style>
 body {
@@ -11,70 +11,40 @@ body {
   background: #f4f4f4;
 }
 
-h1 { margin-top: 10px; }
+input { width:50px; font-size:18px; text-align:center; }
+button { font-size:16px; padding:5px 12px; cursor:pointer; }
 
-input {
-  width: 50px;
-  font-size: 18px;
-  text-align: center;
-}
-
-button {
-  font-size: 16px;
-  padding: 5px 12px;
-  cursor: pointer;
-}
-
-.area {
-  margin-top: 30px;
-}
-
-.hand, .foot {
+.hand,.foot {
   position: relative;
   display: inline-block;
   margin: 20px;
 }
 
-.hand img, .foot img {
-  width: 220px;
+.hand img,.foot img { width:220px; }
+
+.finger,.toe {
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,165,0,0);
+  transition:.3s;
 }
 
-.finger, .toe {
-  position: absolute;
-  border-radius: 50%;
-  background: rgba(255,165,0,0);
-  transition: 0.3s;
-}
+.active { background:rgba(255,165,0,.7); }
 
-.active {
-  background: rgba(255,165,0,0.7);
-}
+/* tay */
+.f1{top:10%;left:10%;width:28px;height:45px;}
+.f2{top:5%;left:28%;width:28px;height:50px;}
+.f3{top:3%;left:45%;width:28px;height:55px;}
+.f4{top:5%;left:62%;width:28px;height:50px;}
+.f5{top:10%;left:78%;width:28px;height:45px;}
+.f6,.f7,.f8,.f9,.f10{}
 
-/* ====== VỊ TRÍ NGÓN TAY ====== */
-.f1 { top:10%; left:10%; width:28px; height:45px; }
-.f2 { top:5%;  left:28%; width:28px; height:50px; }
-.f3 { top:3%;  left:45%; width:28px; height:55px; }
-.f4 { top:5%;  left:62%; width:28px; height:50px; }
-.f5 { top:10%; left:78%; width:28px; height:45px; }
-
-/* ====== NGÓN TAY PHẢI ====== */
-.f6 { top:10%; left:10%; width:28px; height:45px; }
-.f7 { top:5%;  left:28%; width:28px; height:50px; }
-.f8 { top:3%;  left:45%; width:28px; height:55px; }
-.f9 { top:5%;  left:62%; width:28px; height:50px; }
-.f10{ top:10%; left:78%; width:28px; height:45px; }
-
-/* ====== NGÓN CHÂN ====== */
-.t1,.t6 { top:5%; left:15%; width:30px; height:30px; }
-.t2,.t7 { top:3%; left:32%; width:30px; height:30px; }
-.t3,.t8 { top:2%; left:48%; width:30px; height:30px; }
-.t4,.t9 { top:3%; left:64%; width:30px; height:30px; }
-.t5,.t10{ top:5%; left:80%; width:30px; height:30px; }
-
-#info {
-  font-size: 20px;
-  margin-top: 15px;
-}
+/* chân */
+.t1,.t6{top:5%;left:15%;width:30px;height:30px;}
+.t2,.t7{top:3%;left:32%;width:30px;height:30px;}
+.t3,.t8{top:2%;left:48%;width:30px;height:30px;}
+.t4,.t9{top:3%;left:64%;width:30px;height:30px;}
+.t5,.t10{top:5%;left:80%;width:30px;height:30px;}
 </style>
 </head>
 
@@ -82,14 +52,13 @@ button {
 
 <h1>🖐️ Đếm Bằng Tay & Chân 🦶</h1>
 
-<input id="a" type="number" min="1" max="10" value="2">
-+
-<input id="b" type="number" min="1" max="10" value="3">
+<input id="a" type="number" value="2"> +
+<input id="b" type="number" value="3">
 <button onclick="start()">Bắt đầu</button>
 
-<div id="info"></div>
+<h2 id="info"></h2>
 
-<div class="area">
+<div>
   <div class="hand">
     <img src="hand.png">
     <div class="finger f1"></div><div class="finger f2"></div>
@@ -105,7 +74,7 @@ button {
   </div>
 </div>
 
-<div class="area">
+<div>
   <div class="foot">
     <img src="foot.png">
     <div class="toe t1"></div><div class="toe t2"></div>
@@ -122,45 +91,39 @@ button {
 </div>
 
 <script>
-const fingers = document.querySelectorAll(".finger");
-const toes = document.querySelectorAll(".toe");
-const info = document.getElementById("info");
+const fingers=document.querySelectorAll(".finger");
+const toes=document.querySelectorAll(".toe");
+const info=document.getElementById("info");
 
-function clearAll() {
-  [...fingers, ...toes].forEach(e => e.classList.remove("active"));
+function clearAll(){
+  [...fingers,...toes].forEach(e=>e.classList.remove("active"));
 }
 
-function count(n, startIndex, callback) {
-  let i = 0;
-  const timer = setInterval(() => {
-    let index = startIndex + i;
-    if (index < 10) fingers[index].classList.add("active");
-    else toes[index - 10].classList.add("active");
-
-    info.innerText = "Đếm: " + (i + 1);
+function count(n,start,cb){
+  let i=0;
+  const t=setInterval(()=>{
+    let idx=start+i;
+    if(idx<10) fingers[idx].classList.add("active");
+    else toes[idx-10].classList.add("active");
+    info.innerText="Đếm: "+(i+1);
     i++;
-
-    if (i === n) {
-      clearInterval(timer);
-      if (callback) setTimeout(callback, 800);
-    }
-  }, 600);
+    if(i===n){clearInterval(t);if(cb)setTimeout(cb,800);}
+  },600);
 }
 
-function start() {
-  const a = Number(aInput.value = document.getElementById("a").value);
-  const b = Number(bInput.value = document.getElementById("b").value);
-
-  if (!a || !b) return alert("Nhập đủ số");
+function start(){
+  const a=Number(document.getElementById("a").value);
+  const b=Number(document.getElementById("b").value);
+  if(!a||!b) return alert("Nhập số!");
 
   clearAll();
-  info.innerText = "Đếm số thứ nhất";
-  count(a, 0, () => {
-    info.innerText = "Đếm số thứ hai";
-    count(b, a, () => {
+  info.innerText="Đếm số thứ nhất";
+  count(a,0,()=>{
+    info.innerText="Đếm số thứ hai";
+    count(b,a,()=>{
       clearAll();
-      info.innerText = "Đếm tổng";
-      count(a + b, 0);
+      info.innerText="Đếm tổng";
+      count(a+b,0);
     });
   });
 }

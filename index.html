@@ -1,109 +1,32 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<title>Đếm ngón kiểu Trung Quốc</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f4f6f8;
-        text-align: center;
-    }
-
-    h1 { margin-top: 20px; }
-
-    .controls {
-        margin: 20px;
-    }
-
-    input {
-        width: 60px;
-        font-size: 18px;
-        text-align: center;
-    }
-
-    button {
-        padding: 8px 16px;
-        font-size: 16px;
-        cursor: pointer;
-    }
-
-    .fingers {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 520px;
-        margin: 30px auto;
-        gap: 6px;
-    }
-
-    .finger {
-        width: 40px;
-        height: 70px;
-        background: #ffccaa;
-        border-radius: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    .active {
-        background: #4caf50;
-        color: white;
-    }
-</style>
+  <meta charset="UTF-8">
+  <title>Đếm Bằng Tay & Chân</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>🖐️🦶 Đếm ngón kiểu video viral</h1>
+<h1>🖐️ Đếm Bằng Tay & Chân 🦶</h1>
 
-<div class="controls">
-    <input id="a" type="number" min="1" max="10" value="7">
-    +
-    <input id="b" type="number" min="1" max="10" value="8">
-    <button onclick="start()">Đếm</button>
+<div class="input-box">
+  <input type="number" id="a" placeholder="Số A" min="1" max="10">
+  <span>+</span>
+  <input type="number" id="b" placeholder="Số B" min="1" max="10">
+  <button onclick="start()">Bắt đầu</button>
 </div>
 
-<div class="fingers" id="fingers"></div>
+<h2 id="stepText"></h2>
 
-<script>
-    const fingersDiv = document.getElementById("fingers");
+<div class="hands">
+  <div class="hand" id="leftHand"></div>
+  <div class="hand" id="rightHand"></div>
+</div>
 
-    // Tạo 20 ngón
-    for (let i = 1; i <= 20; i++) {
-        const f = document.createElement("div");
-        f.className = "finger";
-        f.innerText = i;
-        fingersDiv.appendChild(f);
-    }
+<div class="feet" id="feet"></div>
 
-    function reset() {
-        document.querySelectorAll(".finger").forEach(f =>
-            f.classList.remove("active")
-        );
-    }
+<h2 id="countText"></h2>
 
-    function start() {
-        reset();
-
-        const a = Number(document.getElementById("a").value);
-        const b = Number(document.getElementById("b").value);
-        const total = a + b;
-
-        const fingers = document.querySelectorAll(".finger");
-
-        // Animation đếm từng ngón
-        fingers.forEach((f, i) => {
-            if (i < total) {
-                setTimeout(() => {
-                    f.classList.add("active");
-                }, i * 300); // tốc độ đếm
-            }
-        });
-    }
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>

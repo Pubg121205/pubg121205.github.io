@@ -1,555 +1,109 @@
-<!-- Thanh tiêu đề đầu trang -->
-<header class="header">
-  <div class="header-container">
-    <img src="LOGO.png" alt="Logo 55 năm thành lập" class="logo">
-    <h1 class="title">THIẾT BỊ HỖ TRỢ THÔNG BÁO CHUYỂN KHOẢN PHÁT ÂM THANH </h1>
-  </div>
-</header>
-
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Đếm ngón kiểu Trung Quốc</title>
 <style>
-  .header {
-    background-color: #ffffff; /* nền trắng */
-    border-bottom: 3px solid #e0e0e0; /* đường viền mảnh phía dưới */
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-
-  .header-container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 20px;
-  }
-
-  .logo {
-    height: 70px; /* kích thước logo */
-    width: auto;
-  }
-
-  .title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #004aad; /* xanh nước biển */
-    text-transform: uppercase; /* in hoa */
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 128, 0.2); /* làm nổi chữ */
-  }
-</style>
-
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Báo cáo online</title>
-        <link rel="stylesheet" href="style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-        <style>
-          
-    body{
-        background-color: #D5D5D5;
-        font-family: system-ui;
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        text-align: center;
     }
-    .container{
-        background-color: #E9E7EA;
-        width:1000px;
-        max-width: 100%;
-        margin:auto;
-        padding:50px;
-        box-shadow: 0 10px 50px #858585;
-        display: grid;
-       grid-template-columns: 35% 60%;
-       column-gap: 5%; 
-       row-gap: 30px;
+
+    h1 { margin-top: 20px; }
+
+    .controls {
+        margin: 20px;
     }
-    
-    .avatar img{
-        width:200px;
-        height:200px;
-        object-fit: cover;
-        border-radius: 50%;
+
+    input {
+        width: 60px;
+        font-size: 18px;
+        text-align: center;
     }
-    .avatar{
+
+    button {
+        padding: 8px 16px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .fingers {
         display: flex;
-        justify-content: end;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 520px;
+        margin: 30px auto;
+        gap: 6px;
+    }
+
+    .finger {
+        width: 40px;
+        height: 70px;
+        background: #ffccaa;
+        border-radius: 20px;
+        display: flex;
         align-items: center;
-    }
-    .name{
-        padding-left: 30px;
-        border-left:1px solid #000;
-    }
-    .name h1{
-        font-weight: 300;
-        font-size: xxx-large;
-        margin:0px 0 5px ;
-    }
-    .name .specialize{
-        margin:0;
+        justify-content: center;
         font-weight: bold;
-        letter-spacing: 3px;
-    }
-    .name .contact{
-        padding:0;
-        list-style: none;
-    }
-    .name .contact span{
-        display: inline-block;
-        background-color: #000;
-        width:20px;
-        height:20px;
-        color:#fff;
-        text-align: center;
-        border-radius: 50%;
-        font-size: small;
-        margin-right: 20px;
-    }
-    .name .contact li{
-        padding:5px 0;
-        transform: translate(-40px);
-        background-color: #E9E7EA;
-    }
-    .info ul{
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        text-align: right;
-        line-height: 30px;
-    } 
-    
-    h2{
-        padding:0;
-        margin: 0 0 20px 0;
-        text-align: center;
-    }
-    .intro{
-        padding-left: 30px;
-        border-left: 1px solid #000;
-        text-align: justify;
-    }
-    .experience{
-        text-align: right;
-    }
-    .experience h4{
-        margin:20px 0 10px;
-    }
-    .skills{
-        margin-top:  50px;
-    }
-    .experience ul{
-        padding:0;
-        margin: 0;
-    list-style: none;
-    }
-    .experience li{
-        padding:10px 0;
-    }
-    .project{
-        padding-left: 30px;
-        text-align: justify;
-        border-left: 1px solid #000;
-    }
-    .project h4{
-        margin:20px 0 10px;
-        text-align: center;
-    }
-    .project .web{
-        color: #0c7373;
-        padding:10px 0;
-    }
-    .project .location{
-        font-weight: 500;
-        padding-bottom:10px;
-    }
-    .project .item{
-        position: relative;
-    }
-    .project .item::before{
-        position: absolute;
-        width:13px;
-        height: 13px;
-        background-color: #000;
-        content: '';
-        border-radius: 50%;
-        left: -37px;
-    }
-         .iframe-container {
-              display: flex; /* Kích hoạt Flexbox */
-              justify-content: center; /* Căn giữa theo chiều ngang */
-              align-items: center; /* Căn giữa theo chiều dọc */
-              margin-top: 20px; /* Tùy chỉnh khoảng cách phía trên */
-              margin-bottom: 20px; /* Khoảng cách phía dưới */
-              width: 600px; /* Đảm bảo container chiếm toàn bộ chiều ngang */
-              height: 190px; /* Điều chỉnh chiều cao theo nội dung iframe */
-}
-
-          iframe {
-            width: 120%; /* Chiều rộng iframe */
-            height: 200%; /* Chiều cao iframe */
-            border: 1px solid #ccc; /* Viền nhẹ cho iframe */
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Hiệu ứng đổ bóng */
-            border-radius: 8px; /* Bo góc iframe */
-}
-    p.left {
-       text-align: left;
+        transition: 0.3s;
     }
 
-      .des {
-            font-family: Arial, sans-serif;
-            font-size: 16px;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            max-width: 800px;
-            margin: 20px;
-            text-align: left; /* Căn toàn bộ nội dung sang trái */
-        }
-        .des strong {
-            color: #007BFF;
-        }
-         h4{
-          text-align: center;
-         }
-         time{
-          text-align: center;
-         }
-         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left; /* Căn chữ sang trái */
-        }
-        th {
-            background-color: #f4f4f4;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-         .features ul {
-            padding-left: 20px; /* Thụt lề danh sách */
-        }
-        .features li {
-            margin-bottom: 10px; /* Khoảng cách giữa các mục */
-        </style>
-    </head>
-    <body>
-        <div class="container">
-           <div class="avatar">
-            <img src="anh.jpg" alt="">
-
-           </div>
-           <div class="name">
-                <h1>Thiết bị hỗ trợ thông báo chuyển khoản phát âm thanh</h1>
-                <ul class="contact">
-                    <li>
-                        <span>I</span> 
-                    </li>
-                    <li>
-                        <span>o</span> 
-                    </li>
-                    <li>
-                        <span>T</span> 
-                    </li>
-                </ul>
-           </div>
-           <div class="info">
-                <ul>
-                    <li>From <b>SPKT</b> - HNUE</li>
-                    <li>7/11/2025</li>
-                    <li>HNUE University</li>
-                </ul>
-           </div>
-           <div class="intro">
-            <h2>Lý do đề tài</h2>
-            “Thiết bị hỗ trợ thông báo chuyển khoản” tạo ra thiết bị thông minh phát âm thanh khi có giao dịch, hiển thị 5 giao dịch gần nhất giúp người bán nhận biết nhanh mà không cần kiểm tra điện thoại. Thiết bị giúp giảm chi phí, tránh dán đè mã QR và quản lý tiền hiệu quả, phù hợp cho hộ kinh doanh nhỏ. 
-           </div>
-           <div class="experience">
-            <h2>Các khái niệm có liên quan tới đề tài</h2>
-    
-            <div class="item">
-                <h4>Khái niệm về IoT</h4>
-                <div class="des">
-        <strong>IoT (Internet of things-Internet vạn vật kết)</strong> là mạng lưới các thiết bị vật lý (như cảm biến, máy móc, xe cộ,...) được kết nối với Internet để thu thập, trao đổi và xử lý dữ liệu nhằm tự động hóa và điều khiển thông minh.
-        <br><br>
-        <strong>API ngân hàng (Banking API)</strong> là một giao diện lập trình ứng dụng (Application Programming Interface) cho phép người dùng truy cập các dịch vụ tài chính trong các giải pháp phần mềm không phải công nghệ tài chính và cho phép các doanh nghiệp không phải là tổ chức tài chính cung cấp nhiều dịch vụ tài chính đa dạng trong ứng dụng hoặc nền tảng của họ.
-        <br><br>
-        <strong>Phân loại API:</strong> (Thiết bị dùng API đối tác) <br>
-        - </strong> API công khai (API bên ngoài).<br>
-        - </strong> API nội bộ (API riêng).<br>
-        - </strong> API đối tác.<br>
-        - </strong> API tổng hợp.<br>
-    </div>
-            </div>
-        
-                <div class="item">
-                    <h4>Sơ lược về ESP32</h4>
-                    <div class="time">
-                       <span>ESP32 là một vi điều khiển do Espressif Systems phát triển, tích hợp Wi-Fi và Bluetooth, được dùng nhiều trong các dự án IoT và nhúng.
-</span>
-                    </div>
-                   <div class="des">
-        <strong>Các đặc điểm chính:</strong><br>
-        - <strong>Kết nối không dây:</strong> Hỗ trợ Wi-Fi b/g/n (2.4GHz) và Bluetooth 4.2/BLE.<br>
-        - <strong>Hiệu năng mạnh mẽ:</strong> CPU lõi kép, tốc độ đến 240 MHz, RAM 520 KB.<br>
-        - <strong>Nhiều I/O:</strong> GPIO, ADC, DAC, PWM, SPI, I2C, UART.<br>
-        - <strong>Tiêu thụ năng lượng thấp:</strong> Phù hợp thiết bị chạy pin.<br>
-        - <strong>Hệ sinh thái phong phú:</strong> Hỗ trợ Arduino IDE, ESP-IDF, MicroPython.<br>
-    </div>
-                </div>
-            <div class="item">
-                    <h4>Các thành phần hệ của hệ thống</h4>
-                    <div class="time">
-<span>Bao gồm:
-</span>
-                    </div>
-                    <div class="des">
-        - <b>ESP 32 kèm đế ra chân.<br>
-        - <b>Loa mini 8R 1W.<br>
-        - <b>Mạch khuếch đại âm thanh MAX98357.<br>
-        - <b>Màn hình TFT.<br>
-        - <b>Pin sạc.<br>
-        - <b>Mạch sạc pin.
-                   </div>   
-                </div>
-           </div>
-           <div class="project">
-            <h2>So sánh các hệ thống hỗ trợ chuyển tiền có trên thị trường:</h2>
-
-            <div class="item">
-      <div class="features">
-        <strong>Các tính năng:</strong>
-        <ul>
-            <li><strong>1.Tích hợp và khả năng tương tác:</strong>Các hệ thống phần mềm ngày nay thường được xây dựng dưới dạng tập hợp các dịch vụ nhỏ hoặc mô-đun, mỗi mô-đun đảm nhiệm một chức năng riêng biệt. API đảm bảo các thành phần này có thể hoạt động trơn tru cùng nhau, giúp toàn bộ hệ thống hoạt động trơn tru và mạch lạc.</li>
-            <li><strong>2.Khả năng mở rộng:</strong> API cho phép tách rời các dịch vụ. Khi mỗi dịch vụ tương tác thông qua một API được xác định rõ ràng, từng dịch vụ có thể được mở rộng (tức là tăng hoặc giảm dung lượng) dựa trên nhu cầu mà không ảnh hưởng đến toàn bộ hệ thống.</li>
-            <li><strong>3.Tính linh hoạt và khả năng thích ứng:</strong>Với API, hệ thống có thể phát triển theo thời gian mà không cần phải đại tu toàn bộ kiến ​​trúc. Nếu một thành phần hệ thống cần cập nhật hoặc thay thế, việc này có thể được thực hiện mà không ảnh hưởng đến các thành phần khác, miễn là hợp đồng API vẫn nhất quán.</li>
-            <li><strong>4.Đổi mới:</strong>API cho phép các nhà phát triển bên thứ ba xây dựng dựa trên các nền tảng hiện có. Ví dụ: API tạo điều kiện cho hệ sinh thái ứng dụng rộng lớn trên các nền tảng như iOS và Android hoặc plugin cho nhiều giải pháp phần mềm khác nhau.</li>
-            <li><strong>5.Trao đổi dữ liệu và khả năng truy cập:</strong>API tạo điều kiện thuận lợi cho việc truyền dữ liệu giữa các hệ thống, cho phép truy cập và chia sẻ thông tin theo thời gian thực. Điều này rất quan trọng trong các lĩnh vực như tài chính, y tế và thương mại điện tử, nơi việc trao đổi dữ liệu kịp thời và chính xác là vô cùng quan trọng..</li>
-            <li><strong>6.Tự động hóa::</strong>Các nhiệm vụ trước đây cần can thiệp thủ công giờ đây có thể được tự động hóa thông qua API, mang lại hiệu quả và giảm thiểu lỗi của con người.</li>
-            <li><strong>7.Nguồn doanh thu:</strong>Doanh nghiệp có thể kiếm tiền từ API của mình bằng cách cung cấp các chức năng có giá trị cho các nhà phát triển hoặc doanh nghiệp bên thứ ba. Ví dụ: nhiều dịch vụ đám mây cung cấp API mà nhà phát triển có thể sử dụng trong ứng dụng của họ, với mức phí dựa trên mức sử dụng.</li>
-            <li><strong>8.Chuẩn hóa:</strong>API cung cấp một phương thức chuẩn để các hệ thống tương tác, mang lại tính nhất quán và khả năng dự đoán. Điều này đặc biệt quan trọng trong các lĩnh vực có yêu cầu nghiêm ngặt về quy định và tuân thủ.</li>
-            <li><strong>9.Bảo mật:</strong>Mặc dù việc tiết lộ API có thể gây ra các vấn đề bảo mật, nhưng một API được thiết kế tốt cũng cung cấp một cơ chế kiểm soát để truy cập dữ liệu và chức năng của hệ thống. Thay vì nhiều phương thức truy cập khác nhau, hệ thống có thể tập trung vào việc bảo mật một điểm truy cập duy nhất, được xác định rõ ràng.</li>
-            <li><strong>10.Hiệu quả chi phí:</strong>API cho phép tái sử dụng các dịch vụ và thành phần, giúp giảm chi phí phát triển. Thay vì phải phát minh lại bánh xe, các nhà phát triển có thể tận dụng các dịch vụ hiện có.</li>
-        <tr>
-           
-        </tr>
-        <tr>
-            <th>KẾT LUẬN</th>
-            <td>Đơn giản, rẻ, phù hợp lớp học nhỏ ít học sinh.</td>
-            <td>Hiện đại, hiệu quả, tiết kiệm thời gian, chi phí ban đầu sẽ cao.</td>
-        </tr>
-    </table>
-            </div>
-    
-            <div class="item">
-      <div class="features">
-       
-        </tr>
-        <tr>
-            <th>KẾT LUẬN</th>
-            <td>Đơn giản, rẻ, phù hợp lớp học nhỏ ít học sinh.</td>
-            <td>Hiện đại, hiệu quả, tiết kiệm thời gian, chi phí ban đầu sẽ cao.</td>
-        </tr>
-    </table>
-            </div>
-    
-            <div class="item">
-      <div class="features">
-        </ul>
-    </div><br><br><br>
-    <div class="google-sheet">
-    <div class="con">
-    <div class="iframe-container">
-    <iframe 
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS6LS75vo681kAmVL51lj-ggZGDKx1qtnA6hG0OTPyVtPzv_MBlDnz-1heKlah2bQQhp1L3wJVJna9i/pubhtml">
-    </iframe>
-    </div>
-
-</div>
-</div>
-                </div>
-            </div>
-    
-
-               
-
-            </div>
-           </div>
-        
-
-        </div>
-      
-    <script>
-fetch('https://docs.google.com/spreadsheets/d/e/2PACX-1vS6LS75vo681kAmVL51lj-ggZGDKx1qtnA6hG0OTPyVtPzv_MBlDnz-1heKlah2bQQhp1L3wJVJna9i/pubhtml')
-  .then(response => response.json())
-  .then(data => {
-    const rows = data.feed.entry;
-    rows.forEach(row => {
-      console.log(`Name: ${row.gsx$name.$t}`);
-      console.log(`Email: ${row.gsx$email.$t}`);
-      console.log(`Age: ${row.gsx$age.$t}`);
-    });
-  })
-  .catch(error => console.error('Error fetching data:', error));
-
-    </script>
-    </body>
-    </html>
-
-
-<hr style="margin-top:50px; border: 1px solid #ccc;">
-
-<footer style="background-color:#fff; padding:40px 80px; display:flex; justify-content:space-between; flex-wrap:wrap; color:#2e2e2e; font-family: system-ui;">
-   
-  <div style="display: flex; justify-content: center; align-items: flex-start; margin: 30px 80px 10px 80px; gap: 150px; flex-wrap: nowrap;">
-    
- <div style="display: flex; flex-direction: column; align-items: center; margin: 30px 80px 10px 80px;">
-
-  <!-- Hai cột nằm trên cùng một hàng -->
-  <div style="display: flex; justify-content: center; align-items: flex-start; gap: 150px; width: 100%;">
-
-    
-    <!-- Cột trái -->
-    <div style="white-space: nowrap;">
-      <h3 style="color: dodgerblue; font-weight: bold; margin: 0;">Thông tin liên hệ</h3>
-      <div style="margin-top: 5px; font-weight: bold;">
-        📞 0928 671 423 / 0946 410 986 &nbsp;&nbsp;&nbsp;<br>
-        📧 <a href="mailto:Ltanh627@gmail.com" style="text-decoration: none; color: blue; font-weight: bold;">Ltanh627@gmail.com</a>
-      </div>
-    </div>
-
-    <!-- Cột phải -->
-    <div style="white-space: nowrap;">
-      <h3 style="color: dodgerblue; font-weight: bold; margin: 0;">THÔNG TIN SINH VIÊN THỰC HIỆN ĐỀ TÀI</h3>
-      <div style="margin-top: 5px; font-weight: bold;">
-        👤 Lê Tú Anh - K73A1. &nbsp;&nbsp;<br>
-        👤 Nguyễn Trọng Dũng - K73A1. &nbsp;&nbsp;<br>
-        👤 Nguyễn Minh Tuấn - K72A1.
-      </div>
-    </div>
-  </div>
-
-  <!-- Dòng chữ đỏ riêng, nằm dưới 2 cột -->
-  <p style="color: red; text-align: center; font-style: italic; margin-top: 15px; font-weight: bold;">
-    Sản phẩm do sinh viên khoa Sư phạm kỹ thuật - HNUE thực hiện, rất mong nhận được sự nhận xét. <br> Nhóm sinh viên chúng em xin lắng nghe ạ !
-  </p>
-</div>
-
-
-</footer>
-
-<!-- Floating buttons -->
-<div class="floating-buttons">
-  <!-- Nút Facebook -->
-  <a href="https://www.facebook.com/Le.tu.anh2403" target="_blank" class="floating-btn facebook">
-    <img src="https://cdn-icons-png.flaticon.com/512/5968/5968764.png" alt="Facebook">
-  </a>
-
-  <!-- Nút Zalo -->
-  <a href="https://zalo.me/0946410986" target="_blank" class="floating-btn zalo">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Icon_of_Zalo.svg" alt="Zalo">
-  </a>
-</div>
-
-<style>
-  /* Container nút nổi */
-  .floating-buttons {
-    position: fixed;
-    bottom: 80px;   /* cách đáy */
-    right: 20px;    /* cách mép phải */
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    z-index: 9999;
-  }
-
-  /* Mỗi nút */
-  .floating-btn {
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    background-color: white;
-    box-shadow: 0 3px 8px rgba(0,0,0,0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-  }
-
-  .floating-btn img {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-
-  .floating-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 12px rgba(0,0,0,0.35);
-  }
-
-  /* Màu nền riêng */
-  .facebook { background-color: #1877f2; }
-  .zalo { background-color: #0180c7; }
+    .active {
+        background: #4caf50;
+        color: white;
+    }
 </style>
+</head>
+<body>
 
- 
+<h1>🖐️🦶 Đếm ngón kiểu video viral</h1>
 
+<div class="controls">
+    <input id="a" type="number" min="1" max="10" value="7">
+    +
+    <input id="b" type="number" min="1" max="10" value="8">
+    <button onclick="start()">Đếm</button>
+</div>
 
+<div class="fingers" id="fingers"></div>
 
+<script>
+    const fingersDiv = document.getElementById("fingers");
 
+    // Tạo 20 ngón
+    for (let i = 1; i <= 20; i++) {
+        const f = document.createElement("div");
+        f.className = "finger";
+        f.innerText = i;
+        fingersDiv.appendChild(f);
+    }
 
+    function reset() {
+        document.querySelectorAll(".finger").forEach(f =>
+            f.classList.remove("active")
+        );
+    }
 
+    function start() {
+        reset();
 
+        const a = Number(document.getElementById("a").value);
+        const b = Number(document.getElementById("b").value);
+        const total = a + b;
 
+        const fingers = document.querySelectorAll(".finger");
 
+        // Animation đếm từng ngón
+        fingers.forEach((f, i) => {
+            if (i < total) {
+                setTimeout(() => {
+                    f.classList.add("active");
+                }, i * 300); // tốc độ đếm
+            }
+        });
+    }
+</script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</body>
+</html>

@@ -6,132 +6,108 @@
 
 <style>
 body {
-  font-family: Arial;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f7f7f7;
+}
+
+h1 {
+  margin-top: 20px;
+}
+
+input {
+  width: 60px;
+  font-size: 18px;
   text-align: center;
 }
 
-input { width:50px; font-size:18px; text-align:center; }
-button { font-size:16px; padding:5px 12px; cursor:pointer; }
-
-.container {
-  margin-top: 30px;
+button {
+  font-size: 18px;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
-.hand, .foot {
+#result {
+  font-size: 28px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.hand-box {
   position: relative;
-  display: inline-block;
+  width: 400px;
+  margin: auto;
 }
 
-.hand img, .foot img {
-  width: 300px;
+.hand-box img {
+  width: 100%;
 }
 
-.finger, .toe {
+/* chấm đếm */
+.dot {
   position: absolute;
+  width: 30px;
+  height: 30px;
+  background: orange;
   border-radius: 50%;
-  background: rgba(255,165,0,0);
-  transition: 0.3s;
+  opacity: 0.85;
 }
 
-.active {
-  background: rgba(255,165,0,0.7);
-}
+/* vị trí chấm (không theo ngón) */
+.dot1 { top: 40%; left: 30%; }
+.dot2 { top: 35%; left: 45%; }
+.dot3 { top: 40%; left: 60%; }
+.dot4 { top: 55%; left: 35%; }
+.dot5 { top: 55%; left: 50%; }
+.dot6 { top: 55%; left: 65%; }
+.dot7 { top: 70%; left: 40%; }
+.dot8 { top: 70%; left: 55%; }
+.dot9 { top: 25%; left: 38%; }
+.dot10{ top: 25%; left: 58%; }
 
-/* ===== NGÓN TAY (10 NGÓN / 1 ẢNH) ===== */
-.f1 {top:10%;left:10%;width:30px;height:50px;}
-.f2 {top:5%; left:25%;width:30px;height:55px;}
-.f3 {top:3%; left:40%;width:30px;height:60px;}
-.f4 {top:5%; left:55%;width:30px;height:55px;}
-.f5 {top:10%;left:70%;width:30px;height:50px;}
-
-.f6 {top:10%;left:90%;width:30px;height:50px;}
-.f7 {top:5%; left:75%;width:30px;height:55px;}
-.f8 {top:3%; left:60%;width:30px;height:60px;}
-.f9 {top:5%; left:45%;width:30px;height:55px;}
-.f10{top:10%;left:30%;width:30px;height:50px;}
-
-/* ===== NGÓN CHÂN (10 NGÓN / 1 ẢNH) ===== */
-.t1 {top:5%;left:15%;width:35px;height:35px;}
-.t2 {top:3%;left:30%;width:35px;height:35px;}
-.t3 {top:2%;left:45%;width:35px;height:35px;}
-.t4 {top:3%;left:60%;width:35px;height:35px;}
-.t5 {top:5%;left:75%;width:35px;height:35px;}
-
-.t6 {top:5%;left:85%;width:35px;height:35px;}
-.t7 {top:3%;left:70%;width:35px;height:35px;}
-.t8 {top:2%;left:55%;width:35px;height:35px;}
-.t9 {top:3%;left:40%;width:35px;height:35px;}
-.t10{top:5%;left:25%;width:35px;height:35px;}
 </style>
 </head>
 
 <body>
 
-<h1>🖐️ Đếm Bằng Tay & Chân 🦶</h1>
+<h1>✋ Đếm Bằng Tay</h1>
 
-<input id="a" value="3"> +
-<input id="b" value="5">
+<input id="a" type="number" value="2">
++
+<input id="b" type="number" value="3">
 <button onclick="start()">Bắt đầu</button>
 
-<h2 id="info"></h2>
+<div id="result"></div>
 
-<div class="container">
-  <div class="hand">
-    <img src="hand.png">
-    <div class="finger f1"></div><div class="finger f2"></div>
-    <div class="finger f3"></div><div class="finger f4"></div>
-    <div class="finger f5"></div><div class="finger f6"></div>
-    <div class="finger f7"></div><div class="finger f8"></div>
-    <div class="finger f9"></div><div class="finger f10"></div>
-  </div>
-</div>
+<div class="hand-box">
+  <img src="hand.png">
 
-<div class="container">
-  <div class="foot">
-    <img src="foot.png">
-    <div class="toe t1"></div><div class="toe t2"></div>
-    <div class="toe t3"></div><div class="toe t4"></div>
-    <div class="toe t5"></div><div class="toe t6"></div>
-    <div class="toe t7"></div><div class="toe t8"></div>
-    <div class="toe t9"></div><div class="toe t10"></div>
-  </div>
+  <div class="dot dot1"></div>
+  <div class="dot dot2"></div>
+  <div class="dot dot3"></div>
+  <div class="dot dot4"></div>
+  <div class="dot dot5"></div>
+  <div class="dot dot6"></div>
+  <div class="dot dot7"></div>
+  <div class="dot dot8"></div>
+  <div class="dot dot9"></div>
+  <div class="dot dot10"></div>
 </div>
 
 <script>
-const fingers = document.querySelectorAll(".finger");
-const toes = document.querySelectorAll(".toe");
-const info = document.getElementById("info");
-
-function clearAll() {
-  [...fingers, ...toes].forEach(e => e.classList.remove("active"));
-}
-
-function count(n, start, cb) {
-  let i = 0;
-  const timer = setInterval(() => {
-    let idx = start + i;
-    if (idx < 10) fingers[idx].classList.add("active");
-    else toes[idx - 10].classList.add("active");
-
-    info.innerText = "Đếm: " + (i + 1);
-    i++;
-    if (i === n) {
-      clearInterval(timer);
-      if (cb) setTimeout(cb, 800);
-    }
-  }, 600);
-}
-
 function start() {
   const a = Number(document.getElementById("a").value);
   const b = Number(document.getElementById("b").value);
-  if (!a || !b) return alert("Nhập số");
+  const total = a + b;
 
-  clearAll();
-  count(a, 0, () => count(b, a, () => {
-    clearAll();
-    count(a + b, 0);
-  }));
+  document.getElementById("result").innerText = "Đếm: " + total;
+
+  const dots = document.querySelectorAll(".dot");
+  dots.forEach(d => d.style.display = "none");
+
+  for (let i = 0; i < total && i < dots.length; i++) {
+    dots[i].style.display = "block";
+  }
 }
 </script>
 
